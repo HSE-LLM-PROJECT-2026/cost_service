@@ -1,7 +1,5 @@
 # Cost Service
 
-[HSE-LLM-PROJECT-2026/cost_service](https://github.com/HSE-LLM-PROJECT-2026/cost_service)
-
 ## Описание
 
 FastAPI-сервис для FinOps-части платформы. Он хранит тарифы, цену электроэнергии и события стоимости инференса, после чего отдает сводки для frontend.
