@@ -67,16 +67,19 @@ LOG_LEVEL=INFO
 ```
 
 ## Основные API-ручки
-- `GET /health`
-- `GET /livez`
-- `GET /service-info`
-- `GET /cost/summary`
-- `GET /cost/history`
-- `GET /cost/rates`
-- `PUT /cost/rates/{model_name}`
-- `GET /cost/settings`
-- `PUT /cost/settings`
-- `POST /cost/events`
+
+| Метод | Ручка | Кто использует | Назначение |
+|--------|-------|----------------|------------|
+| `GET` | `/health` | Ingress, мониторинг | Проверяет доступность cost service. |
+| `GET` | `/livez` | Kubernetes | Liveness probe контейнера. |
+| `GET` | `/service-info` | Frontend, state facade | Возвращает служебную информацию о cost service. |
+| `GET` | `/costs/summary` | Frontend | Возвращает сводку затрат за период: всего, по моделям, командам, пользователям и кластерам. |
+| `GET` | `/costs/history` | Frontend | Возвращает временной ряд стоимости инференса и энергопотребления. |
+| `GET` | `/costs/model-rates` | Frontend | Возвращает ручные тарифы моделей за входные и выходные токены. |
+| `PUT` | `/costs/model-rates/{model_name:path}` | Frontend | Создает или обновляет тариф конкретной модели. |
+| `GET` | `/costs/electricity-price` | Frontend | Возвращает текущую цену электроэнергии для автоматического расчета. |
+| `PUT` | `/costs/electricity-price` | Frontend | Обновляет цену электроэнергии в рублях за кВт·ч. |
+| `POST` | `/costs/usage-events` | Inference gateway | Записывает событие стоимости по завершенному inference-запросу. |
 
 ## Сборка и запуск в Docker
 
